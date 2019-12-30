@@ -1,0 +1,124 @@
+<template lang="pug">
+.page-1
+  img.soulless.so-12.item-12(src="@|one-12.png|" o-animation="floatLeftRight")
+  img.soulless.so-9.item-9(src="@|one-9.png|" o-animation="floatUpDown")
+  img.soulless.so-4.item-4(src="@|one-4.png|")
+  img.soulless.so-13.item-13(src="@|one-13.png|" o-animation="floatLeftRight")
+  img.soulless.so-8.item-8(src="@|one-8.png|" o-animation="floatLeftRight")
+  img.soulless.so-10.item-10(src="@|one-10.png|" o-animation="floatUpDown")
+  img.soulless.so-15.item-15(src="@|one-15.png|" o-animation="floatUpDown")
+  img.soulless.so-6.item-6(src="@|one-6.png|" o-animation="floatUpDown")
+  img.soulless.so-11.item-11(src="@|one-11.png|" o-animation="floatLeftRight")
+  img.soulless.so-16.item-16(src="@|one-16.png|")
+  img.soulless.so-17.item-17(src="@|one-17.png|")
+  img.soulless.so-14.item-14(src="@|one-14.png|" o-animation="floatUpDown")
+  img.soulless.so-5.item-5(src="@|one-5.png|" o-tap="owo.go('page2', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400')" o-animation="shrink")
+  img.soulless.so-2.item-2(src="@|one-2.png|")
+  img.soulless.so-3.item-3(src="@|one-3.png|")
+
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+
+    }
+  }
+</script>
+
+
+<style lang="less">
+.page-1 {
+  background-image: url('@|one-1.png|');
+}
+.so-12 {
+  position: absolute;
+  left: 72px;
+  z-index: 12;
+  top: 31px;
+}
+.so-9 {
+  position: absolute;
+  left: 635px;
+  z-index: 9;
+  top: 0px;
+}
+.so-4 {
+  position: absolute;
+  left: -4px;
+  z-index: 4;
+  top: 77px;
+}
+.so-13 {
+  position: absolute;
+  left: 259px;
+  z-index: 13;
+  top: 328px;
+}
+.so-8 {
+  position: absolute;
+  left: 571px;
+  z-index: 8;
+  top: 103px;
+}
+.so-10 {
+  position: absolute;
+  left: 331px;
+  z-index: 10;
+  top: 329px;
+}
+.so-15 {
+  position: absolute;
+  left: 618px;
+  z-index: 15;
+  top: 574px;
+}
+.so-6 {
+  position: absolute;
+  left: 206px;
+  z-index: 6;
+  top: 655px;
+}
+.so-11 {
+  position: absolute;
+  left: 591px;
+  z-index: 11;
+  top: 829px;
+}
+.so-16 {
+  position: absolute;
+  left: 260px;
+  z-index: 16;
+  top: 901px;
+}
+.so-17 {
+  position: absolute;
+  left: 253px;
+  z-index: 17;
+  top: 1000px;
+}
+.so-14 {
+  position: absolute;
+  left: 0px;
+  z-index: 14;
+  top: 1107px;
+}
+.so-5 {
+  position: absolute;
+  left: 468px;
+  z-index: 5;
+  top: 1201px;
+}
+.so-2 {
+  position: absolute;
+  left: 159px;
+  z-index: 2;
+  top: 1264px;
+}
+.so-3 {
+  position: absolute;
+  left: 599px;
+  z-index: 3;
+  top: 1219px;
+}
+</style>
