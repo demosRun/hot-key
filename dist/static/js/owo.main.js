@@ -1,4 +1,4 @@
-// Mon Dec 30 2019 17:11:12 GMT+0800 (GMT+08:00)
+// Tue Dec 31 2019 17:11:54 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {}
@@ -67,11 +67,9 @@ _owo._run = function (eventFor, event, newPageFunction) {
     newPageFunction.$target = event.target
     newPageFunction[eventForCopy].apply(newPageFunction, parameterArr)
   } else {
-    // 如果没有此方法则交给浏览器引擎尝试运行
-    function tempRun (temp) {
-      eval(temp)
-    }
-    tempRun.apply(newPageFunction, [eventFor])
+    (function (temp) {
+      try {return eval(temp)} catch (error) {return undefined}
+    }).apply(newPageFunction, [eventFor])
   }
 }
 
@@ -99,16 +97,9 @@ _owo.handleEvent = function (tempDom, moudleScript) {
             // 根据手机和PC做不同处理
             if (_owo.isMobi) {
               if (!_owo._event_tap) {console.error('找不到_event_tap方法！'); break;}
-              function sandbox() {
-                var _this = this
-                _owo._event_tap(tempDom, function (event) {
-                  _owo._run(_this.eventFor, event || _this, this.moudleScript)
-                })
-              }
-              sandbox.bind({
-                eventFor,
-                moudleScript
-              })()
+              _owo._event_tap.apply(this, [tempDom, function (event) {
+                _owo._run(eventFor, event || this, moudleScript)
+              }])
             } else _owo.bindEvent('click', eventFor, tempDom, moudleScript)
             break
           }
@@ -128,10 +119,13 @@ _owo.handleEvent = function (tempDom, moudleScript) {
           }
           case 'html': {
             var temp = eventFor.replace(/ /g, '')
-            function tempRun (temp) {
-              return eval(temp)
-            }
-            tempDom.innerHTML = tempRun.apply(moudleScript, [temp])
+            tempDom.innerHTML = (function (temp) {
+              try {
+                return eval(temp)
+              } catch (error) {
+                return undefined
+              }
+            }).apply(moudleScript, [temp])
             break
           }
           default: {
@@ -189,6 +183,15 @@ _owo.handlePage = function (newPageFunction, entryDom) {
     if (!childDom) {continue}
     _owo.handlePage(templateScript, childDom)
   }
+  // 判断页面中是否有路由
+  for (var viewName in newPageFunction.view) {
+    var routeList = newPageFunction.view[viewName]
+    var viewDom = entryDom.querySelector('[view="' + viewName +'"] [route]')
+    // 判断相关模块是否在存在
+    if (!viewDom) {continue}
+    routeList[0].$el = viewDom
+    _owo.handlePage(routeList[0], viewDom)
+  }
 }
 /*
  * 传递函数给whenReady()
@@ -245,9 +248,6 @@ _owo.showPage = function() {
   // 取出URL地址判断当前所在页面
   var pageArg = _owo.getarg(window.location.hash)
   
-  
-  // 手机进入特制页
-  if (_owo.isMobi) {owo.entry = owo.phoneEnter}
   
 
   // 计算$dom
@@ -376,6 +376,80 @@ _owo._event_tap = function (tempDom, callBack) {
     startTime = 0;
     isMove = false
   })
+}
+/**
+ * 打字机特效
+ * @param  {Dom} dom       容器
+ * @param  {string} text   字体内容
+ * @param  {number} time   打字间隔
+ */
+
+owo.tool.typing = function (dom, text, time, finish, index) {
+  if (!dom) {
+    console.error('第一个参数dom不能为空!')
+    return
+  }
+  if (!text) {
+    console.error('第二个参数text不能为空!')
+    return
+  }
+  time = time || 200
+  index = index || 0
+  function typing() {
+    if (index <= text.length) {
+      // 如果是标点符号为了更字然增加打字间隔
+      var tempTime = 0
+      if ([',', '，', '”', '’'].includes(text[index - 1])) {
+        tempTime = 400
+      } else if (['.', '。'].includes(text[index - 1])) {
+        tempTime = 1000
+      }
+      dom.innerHTML = text.slice(0, index++) + '_';
+      setTimeout(function () {
+        owo.tool.typing(dom, text, time, finish, index)
+      }, time + tempTime)
+    }
+    else {
+      dom.innerHTML = text
+      // 完成回调
+      if (finish) finish()
+    }
+  }
+  typing()
+}
+owo.tool.heart = function (dom, callBack) {
+  dom.ontouchstart = function (e) {
+    var x = e.touches[0].pageX;
+    var y = e.touches[0].pageY;
+    var star = document.createElement("div");
+    star.innerHTML = '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M550.4 947.2c-21.333333 17.066667-53.333333 17.066667-74.666667 0C360.533333 864 21.333333 595.2 21.333333 366.933333c0-42.666667 4.266667-72.533333 14.933334-93.866666C74.666667 151.466667 187.733333 64 320 64c66.133333 0 128 23.466667 179.2 59.733333 8.533333 6.4 19.2 6.4 25.6 0C576 87.466667 637.866667 64 704 64c132.266667 0 243.2 87.466667 283.733333 209.066667 10.666667 21.333333 14.933333 53.333333 14.933334 96 0 226.133333-339.2 494.933333-452.266667 578.133333zM332.8 544C198.4 462.933333 213.333333 332.8 213.333333 326.4c2.133333-12.8-6.4-23.466667-17.066666-23.466667-10.666667-2.133333-23.466667 6.4-23.466667 19.2 0 6.4-21.333333 162.133333 138.666667 260.266667 4.266667 2.133333 6.4 2.133333 10.666666 2.133333 6.4 0 14.933333-4.266667 19.2-10.666666 4.266667-10.666667 0-23.466667-8.533333-29.866667z" fill="#d81e06" p-id="2773"></path></svg>';
+    var RandomSize = parseInt(Math.random() * 40 + 20);
+    star.style.height = star.style.width = RandomSize + "px";
+    star.style.color = "red";
+    star.style.pointerEvents = 'none'
+    star.style.width = RandomSize + "px";
+    star.style.position = "absolute";
+    x = x - (RandomSize / 2)
+    y = y - (RandomSize / 2)
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+    document.body.appendChild(star);
+    var op = 100;
+    var deg = 0;
+    var RandomX = Math.round(Math.random() * 2 + 2);
+    var t = setInterval(function(){
+      op--;
+      deg +=5;
+      star.style.top = (star.offsetTop-=RandomX) + "px";
+      star.style.left = 20 * Math.sin(deg * Math.PI / 180) + x + "px";
+      star.style.opacity = op / 100;
+      if (star.style.opacity == 0) {
+        clearInterval(t);
+        star.remove();
+      }
+    }, 20)
+    if (callBack) callBack()
+  }
 }
 
 

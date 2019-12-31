@@ -12,7 +12,7 @@
   img.soulless.so-16.item-16(src="@|one-16.png|")
   img.soulless.so-17.item-17(src="@|one-17.png|")
   img.soulless.so-14.item-14(src="@|one-14.png|" o-animation="floatUpDown")
-  img.soulless.so-5.item-5(src="@|one-5.png|" o-tap="owo.go('page2', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400')" o-animation="shrink")
+  img.soulless.so-5.button(src="@|one-5.png|" o-tap="owo.go('page2', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400')" o-animation="shrink")
   img.soulless.so-2.item-2(src="@|one-2.png|")
   img.soulless.so-3.item-3(src="@|one-3.png|")
 

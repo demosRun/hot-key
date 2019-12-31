@@ -1,0 +1,71 @@
+
+<template lang="pug">
+.card
+  img.soulless.so-5.item-5(src="@|two-5.png|")
+  img.text(src="@|text-1.png|")
+  img.people(src="@|img-1.png|")
+  p(font="FZDBSJT.TTF") 我将无我，不负人民。我愿意做到一个“无我”的状态，为中国的发展奉献自己。
+  .num / 6 /
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      likeNum: 20
+    },
+    created: function (params) {
+      console.log(this)
+      owo.tool.heart(this.$el, (params) => {
+        console.log('点赞了!')
+        this.$el.getElementsByClassName('num')[0].innerText = `/ ${this.data.likeNum++} /`
+      })
+    }
+  }
+</script>
+
+
+<style lang="less">
+.card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.so-5 {
+  position: absolute;
+  left: -182px;
+  top: 77px;
+}
+.text {
+  position: absolute;
+  top: 327px;
+  left: 81px;
+}
+.people {
+  position: absolute;
+  top: 514px;
+  left: 254px;
+}
+p {
+  position: absolute;
+  font-size: 33px;
+  line-height: 1.7;
+  color: #202021;
+  width: 436px;
+  top: 1054px;
+  left: 254px;
+  text-indent: 2em;
+}
+.num {
+  position: absolute;
+  top: 290px;
+  right: 54px;
+  font-size: 38px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+}
+</style>
+          
