@@ -17,8 +17,8 @@
   img.soulless.so-4.item-4(src="@|two-4.png|" o-animation="floatUpDown")
   view(_name="cardBox")
     route(_name="card" _src="./src/route/card.owo")
-    route(_name="card" _src="./src/route/card.owo")
-    route(_name="card" _src="./src/route/card.owo")
+    route(_name="card2" _src="./src/route/card.owo")
+    route(_name="card3" _src="./src/route/card.owo")
 </template>
 
 <script>

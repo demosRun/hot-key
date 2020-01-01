@@ -242,7 +242,98 @@ li {
               }
             
 .card {
-  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card .so-5 {
+  position: absolute;
+  left: -182px;
+  top: 77px;
+}
+
+.card .text {
+  position: absolute;
+  top: 327px;
+  left: 81px;
+}
+
+.card .people {
+  position: absolute;
+  top: 514px;
+  left: 254px;
+}
+
+.card p {
+  position: absolute;
+  font-size: 33px;
+  line-height: 1.7;
+  color: #202021;
+  width: 436px;
+  top: 1054px;
+  left: 254px;
+  text-indent: 2em;
+}
+
+.card .num {
+  position: absolute;
+  top: 290px;
+  right: 54px;
+  font-size: 38px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card .so-5 {
+  position: absolute;
+  left: -182px;
+  top: 77px;
+}
+
+.card .text {
+  position: absolute;
+  top: 327px;
+  left: 81px;
+}
+
+.card .people {
+  position: absolute;
+  top: 514px;
+  left: 254px;
+}
+
+.card p {
+  position: absolute;
+  font-size: 33px;
+  line-height: 1.7;
+  color: #202021;
+  width: 436px;
+  top: 1054px;
+  left: 254px;
+  text-indent: 2em;
+}
+
+.card .num {
+  position: absolute;
+  top: 290px;
+  right: 54px;
+  font-size: 38px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+}
+.card {
   width: 100%;
   height: 100%;
   position: relative;
@@ -413,109 +504,8 @@ li {
 .page-2 [view] {
   z-index: 4;
 }
-.page-3 .so-13 {
-  position: absolute;
-  left: 72px;
-  z-index: 13;
-  top: 31px;
-}
-
-.page-3 .so-9 {
-  position: absolute;
-  left: 635px;
-  z-index: 9;
-  top: 0px;
-}
-
-.page-3 .so-6 {
-  position: absolute;
-  left: 230px;
-  z-index: 6;
-  top: 218px;
-}
-
-.page-3 .so-10 {
-  position: absolute;
-  left: 75px;
-  z-index: 10;
-  top: 251px;
-}
-
-.page-3 .so-11 {
-  position: absolute;
-  left: 579px;
-  z-index: 11;
-  top: 240px;
-}
-
-.page-3 .so-18 {
-  position: absolute;
-  left: 523px;
-  z-index: 18;
-  top: 238px;
-}
-
-.page-3 .so-14 {
-  position: absolute;
-  left: 296px;
-  z-index: 14;
-  top: 329px;
-}
-
-.page-3 .so-7 {
-  position: absolute;
-  left: 411px;
-  z-index: 7;
-  top: 307px;
-}
-
-.page-3 .so-16 {
-  position: absolute;
-  left: 618px;
-  z-index: 16;
-  top: 396px;
-}
-
-.page-3 .so-5 {
-  position: absolute;
-  left: -182px;
-  z-index: 5;
-  top: 77px;
-}
-
-.page-3 .so-8 {
-  position: absolute;
-  left: 144px;
-  z-index: 8;
-  top: 1052px;
-}
-
-.page-3 .so-12 {
-  position: absolute;
-  left: 602px;
-  z-index: 12;
-  top: 879px;
-}
-
-.page-3 .so-15 {
-  position: absolute;
-  left: 24px;
-  z-index: 15;
-  top: 1210px;
-}
-
-.page-3 .so-3 {
-  position: absolute;
-  left: 159px;
-  z-index: 3;
-  top: 1264px;
-}
-
-.page-3 .so-4 {
-  position: absolute;
-  left: 599px;
-  z-index: 4;
-  top: 1219px;
+.page-3 {
+  background-image: url('../resource/three-bg.jpg');
 }
 /* 页面切换动画 */
 .o-page-scaleDownCenter {

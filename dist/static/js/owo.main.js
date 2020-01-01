@@ -1,4 +1,4 @@
-// Tue Dec 31 2019 17:11:54 GMT+0800 (GMT+08:00)
+// Wed Jan 01 2020 22:23:29 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {}
@@ -97,9 +97,9 @@ _owo.handleEvent = function (tempDom, moudleScript) {
             // 根据手机和PC做不同处理
             if (_owo.isMobi) {
               if (!_owo._event_tap) {console.error('找不到_event_tap方法！'); break;}
-              _owo._event_tap.apply(this, [tempDom, function (event) {
+              _owo._event_tap(tempDom, eventFor, function (event, eventFor) {
                 _owo._run(eventFor, event || this, moudleScript)
-              }])
+              })
             } else _owo.bindEvent('click', eventFor, tempDom, moudleScript)
             break
           }
@@ -190,6 +190,7 @@ _owo.handlePage = function (newPageFunction, entryDom) {
     // 判断相关模块是否在存在
     if (!viewDom) {continue}
     routeList[0].$el = viewDom
+    viewDom.classList.add('active-route')
     _owo.handlePage(routeList[0], viewDom)
   }
 }
@@ -283,6 +284,13 @@ _owo.showPage = function() {
       _owo.handlePage(owo.script[plugName], plugEL)
       _owo.handleEvent(plugEL, owo.script[plugName])
     }
+
+    // 路由列表
+    var viewList = entryDom.querySelectorAll('[view]')
+    for (let index = 0; index < viewList.length; index++) {
+      const element = viewList[index];
+      element.children[0].style.display = 'block'
+    }
   } else {
     console.error('未设置程序入口!')
   }
@@ -358,7 +366,7 @@ if(/iPhone\sOS.*QQ[^B]/.test(navigator.userAgent)) {window.onpopstate = _owo.has
 
 // 执行页面加载完毕方法
 _owo.ready(_owo.showPage)
-_owo._event_tap = function (tempDom, callBack) {
+_owo._event_tap = function (tempDom, eventFor, callBack) {
   // 变量
   var startTime = 0
   var isMove = false
@@ -370,52 +378,12 @@ _owo._event_tap = function (tempDom, callBack) {
   })
   tempDom.addEventListener('touchend', function(e) {
     if (Date.now() - startTime < 300 && !isMove) {
-      callBack(e)
+      callBack(e, eventFor)
     }
     // 清零
     startTime = 0;
     isMove = false
   })
-}
-/**
- * 打字机特效
- * @param  {Dom} dom       容器
- * @param  {string} text   字体内容
- * @param  {number} time   打字间隔
- */
-
-owo.tool.typing = function (dom, text, time, finish, index) {
-  if (!dom) {
-    console.error('第一个参数dom不能为空!')
-    return
-  }
-  if (!text) {
-    console.error('第二个参数text不能为空!')
-    return
-  }
-  time = time || 200
-  index = index || 0
-  function typing() {
-    if (index <= text.length) {
-      // 如果是标点符号为了更字然增加打字间隔
-      var tempTime = 0
-      if ([',', '，', '”', '’'].includes(text[index - 1])) {
-        tempTime = 400
-      } else if (['.', '。'].includes(text[index - 1])) {
-        tempTime = 1000
-      }
-      dom.innerHTML = text.slice(0, index++) + '_';
-      setTimeout(function () {
-        owo.tool.typing(dom, text, time, finish, index)
-      }, time + tempTime)
-    }
-    else {
-      dom.innerHTML = text
-      // 完成回调
-      if (finish) finish()
-    }
-  }
-  typing()
 }
 owo.tool.heart = function (dom, callBack) {
   dom.ontouchstart = function (e) {
@@ -595,4 +563,87 @@ function switchPage (oldUrlParam, newUrlParam) {
   }
   // 不可调换位置
   _owo.handlePage(window.owo.script[newPage], newDom)
+}
+
+// 切换路由前的准备工作
+function switchRoute (view, newRouteName, animationIn, animationOut, forward) {
+  var view = document.querySelector('[template=' + owo.activePage + '] [view=' + view + ']')
+  var oldDom = view.querySelector('.active-route')
+  var newDom = view.querySelector('[route=' + newRouteName +']')
+  oldDom.addEventListener("animationend", oldDomFun)
+  newDom.addEventListener("animationend", newDomFun)
+  // 动画延迟
+  var delay = 0
+  oldDom.style.position = 'absolute'
+
+  newDom.style.display = 'block'
+  newDom.style.position = 'absolute'
+  // 给即将生效的页面加上“未来”标识
+  if (forward) {
+    newDom.classList.add('owo-animation-forward')
+  } else {
+    oldDom.classList.add('owo-animation-forward')
+  }
+  // document.body.style.overflow = 'hidden'
+
+  // parentDom.style.perspective = '1200px'
+  oldDom.classList.add('owo-animation')
+  for (var ind =0; ind < animationIn.length; ind++) {
+    var value = animationIn[ind]
+    //判断是否为延迟属性
+    if (value.startsWith('delay')) {
+      var tempDelay = parseInt(value.slice(5))
+      if (delay < tempDelay)  delay = tempDelay
+    }
+    oldDom.classList.add('o-page-' + value)
+  }
+
+  newDom.classList.add('owo-animation')
+  for (var ind =0; ind < animationOut.length; ind++) {
+    var value = animationOut[ind]
+    if (value.startsWith('delay')) {
+      var tempDelay = parseInt(value.slice(5))
+      if (delay < tempDelay)  delay = tempDelay
+    }
+    newDom.classList.add('o-page-' + value)
+  }
+  // 旧DOM执行函数
+  function oldDomFun (e) {
+    // 排除非框架引起的结束事件
+    if (e.target.getAttribute('view')) {
+      // 移除监听
+      oldDom.removeEventListener('animationend', oldDomFun, false)
+      // 延迟后再清除，防止动画还没完成
+      setTimeout(function () {
+        oldDom.style.display = 'none'
+        // console.log(oldDom)
+        oldDom.style.position = ''
+        oldDom.classList.remove('owo-animation')
+        oldDom.classList.remove('owo-animation-forward')
+        parentDom.style.perspective = ''
+        // 清除临时设置的class
+        for (var ind =0; ind < animationIn.length; ind++) {
+          var value = animationIn[ind]
+          oldDom.classList.remove('o-page-' + value)
+        }
+      }, delay);
+    }
+  }
+
+  // 新DOM执行函数
+  function newDomFun () {
+    // 移除监听
+    newDom.removeEventListener('animationend', newDomFun, false)
+    // 延迟后再清除，防止动画还没完成
+    setTimeout(function () {
+      // 清除临时设置的style
+      newDom.style.position = '';
+      newDom.classList.remove('owo-animation');
+      newDom.classList.remove('owo-animation-forward');
+      for (var ind =0; ind < animationOut.length; ind++) {
+        var value = animationOut[ind]
+        newDom.classList.remove('o-page-' + value);
+      }
+    }, delay);
+  }
 }
