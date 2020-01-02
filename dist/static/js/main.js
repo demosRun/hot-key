@@ -22,7 +22,14 @@ function getScale () {
     scaleBox.style.transformOrigin = '0 0 0'
   }
   setTimeout(() => {
-    document.getElementsByTagName('html')[0].style.height = scaleBox.offsetHeight * scale + 'px'
+    var scaleHeight = scaleBox.offsetHeight * scale
+    if (window.innerHeight > scaleHeight) {
+      document.getElementsByTagName('html')[0].style.height = 100 + '%'
+    } else {
+      document.getElementsByTagName('html')[0].style.height = scaleHeight + 'px'
+    }
+    
+    
   }, 0)
 }
 

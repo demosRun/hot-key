@@ -2,10 +2,10 @@
 <template lang="pug">
 .card
   img.soulless.so-5.item-5(src="@|two-5.png|")
-  img.text(src="@|text-1.png|")
-  img.people(src="@|img-1.png|")
-  p(font="FZDBSJT.TTF") 我将无我，不负人民。我愿意做到一个“无我”的状态，为中国的发展奉献自己。
-  .num / 6 /
+  img.text(src="{{prop._title}}")
+  img.people(src="{{prop._people}}")
+  p(font="FZDBSJT.TTF") {{prop._text}}
+  plug.num(_name="scoreboard" _src="./src/module/scoreboard.owo" _text="/ 6 /")
 </template>
 
 <script>
@@ -14,10 +14,11 @@
       likeNum: 20
     },
     created: function (params) {
-      console.log(this)
+      console.log('加载了')
+      owo.tool.animate('zoomIn', this.$el.getElementsByClassName('text')[0], 1000)
       owo.tool.heart(this.$el, (params) => {
-        console.log('点赞了!')
-        this.$el.getElementsByClassName('num')[0].innerText = `/ ${this.data.likeNum++} /`
+        // 增加计数器
+        this.template.scoreboard.changeText(`/ ${this.data.likeNum++} /`)
       })
     }
   }

@@ -241,51 +241,20 @@ li {
                   url('../font/FZDBSJT.svg#MicrosoftYaHei') format('svg');
               }
             
-.card {
+.scoreboard {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+
+.scoreboard .scoreboard-item {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
-  position: relative;
-}
-
-.card .so-5 {
-  position: absolute;
-  left: -182px;
-  top: 77px;
-}
-
-.card .text {
-  position: absolute;
-  top: 327px;
-  left: 81px;
-}
-
-.card .people {
-  position: absolute;
-  top: 514px;
-  left: 254px;
-}
-
-.card p {
-  position: absolute;
-  font-size: 33px;
-  line-height: 1.7;
-  color: #202021;
-  width: 436px;
-  top: 1054px;
-  left: 254px;
-  text-indent: 2em;
-}
-
-.card .num {
-  position: absolute;
-  top: 290px;
-  right: 54px;
-  font-size: 38px;
-  line-height: 40px;
-  height: 40px;
-  font-weight: bold;
-  width: 200px;
-  text-align: center;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
 }
 .card {
   width: 100%;
@@ -541,5 +510,21 @@ li {
 	-webkit-animation-delay: .4s !important;
 	-moz-animation-delay: .4s !important;
 	animation-delay: .4s !important;
+}
+
+/* 动画效果 */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  animation-name: zoomIn;
 }
 

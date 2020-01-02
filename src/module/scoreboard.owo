@@ -1,0 +1,49 @@
+<template lang="pug">
+.scoreboard
+  .scoreboard-item {{prop._text}}
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      changing: false
+    },
+    changeText: function (text) {
+      // 限制刷新频率
+      if (this.data.changing) return
+      const firstChild = this.$el.children[0]
+      this.data.changing = true
+      const newEl = document.createElement('div')
+      newEl.classList.add('scoreboard-item')
+      newEl.innerHTML = text
+      this.$el.appendChild(newEl)
+      newEl.style.top = `40px`
+      setTimeout(() => {
+        firstChild.style.top = `-40px`
+        newEl.style.top = `0`
+        setTimeout(() => {
+          firstChild.remove()
+          this.data.changing = false
+        }, 500)
+      }, 100)
+      
+    }
+  }
+</script>
+
+
+<style lang="less">
+.scoreboard {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+.scoreboard-item {
+  position:  absolute;;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: top 0.5s;
+}
+</style>
