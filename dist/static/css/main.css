@@ -54,3 +54,35 @@ h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, bu
 .button {
   pointer-events: all;
 }
+
+.o-page-test {
+	animation: test 2s ease-out both;
+}
+
+/* 动画效果 */
+@keyframes test {
+  from {
+    opacity: 0;
+    transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.o-page-testleft {
+	animation: testleft 2s ease-out both;
+}
+
+@keyframes testleft {
+  from {
+    opacity: 0;
+    left: 3px;
+    transform: scale3d(2.3, 2.3, 2.3) translate(-50px, 0);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}

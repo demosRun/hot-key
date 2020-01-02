@@ -1,4 +1,4 @@
-// Thu Jan 02 2020 12:46:23 GMT+0800 (GMT+08:00)
+// Thu Jan 02 2020 19:49:54 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {}
@@ -391,6 +391,28 @@ _owo._event_tap = function (tempDom, eventFor, callBack) {
     isMove = false
   })
 }
+/**
+ * 赋予节点动画效果
+ * @param  {string} name 动画效果名称
+ * @param  {dom} dom 节点
+ */
+owo.tool.animate = function (name, dom, delay) {
+  dom.classList.add(name)
+  dom.classList.add('owo-animated')
+  if (delay) {
+    dom.style.animationDelay = delay + 'ms'
+  }
+  // 待优化可以单独提出绑定方法
+  dom.addEventListener('animationend', animateEnd)
+  function animateEnd () {
+    // 待优化 感觉不需要这样
+    dom.classList.remove(name)
+    dom.classList.remove('owo-animated')
+    if (delay) {
+      dom.style.animationDelay = ''
+    }
+  }
+}
 owo.tool.heart = function (dom, callBack) {
   dom.ontouchstart = function (e) {
     var x = e.touches[0].pageX;
@@ -423,28 +445,6 @@ owo.tool.heart = function (dom, callBack) {
       }
     }, 20)
     if (callBack) callBack()
-  }
-}
-/**
- * 赋予节点动画效果
- * @param  {string} name 动画效果名称
- * @param  {dom} dom 节点
- */
-owo.tool.animate = function (name, dom, delay) {
-  dom.classList.add(name)
-  dom.classList.add('owo-animated')
-  if (delay) {
-    dom.style.animationDelay = delay + 'ms'
-  }
-  // 待优化可以单独提出绑定方法
-  dom.addEventListener('animationend', animateEnd)
-  function animateEnd () {
-    // 待优化 感觉不需要这样
-    dom.classList.remove(name)
-    dom.classList.remove('owo-animated')
-    if (delay) {
-      dom.style.animationDelay = ''
-    }
   }
 }
 
@@ -610,10 +610,10 @@ function switchPage (oldUrlParam, newUrlParam) {
 }
 
 // 切换路由前的准备工作
-function switchRoute (view, newRouteIndex, animationIn, animationOut, forward) {
+function switchRoute (view, newRouteName, animationIn, animationOut, forward) {
   var view = document.querySelector('[template=' + owo.activePage + '] [view=' + view + ']')
   var oldDom = view.querySelector('.active-route')
-  var newDom = view.querySelectorAll('[route]')[newRouteIndex]
+  var newDom = view.querySelector('[route=' + newRouteName +']')
   oldDom.addEventListener("animationend", oldDomFun)
   newDom.addEventListener("animationend", newDomFun)
   // 动画延迟
@@ -653,9 +653,8 @@ function switchRoute (view, newRouteIndex, animationIn, animationOut, forward) {
   }
   // 旧DOM执行函数
   function oldDomFun (e) {
-    console.log(e.target)
     // 排除非框架引起的结束事件
-    if (e.target.getAttribute('route')) {
+    if (e.target.getAttribute('view')) {
       // 移除监听
       oldDom.removeEventListener('animationend', oldDomFun, false)
       // 延迟后再清除，防止动画还没完成
@@ -665,7 +664,7 @@ function switchRoute (view, newRouteIndex, animationIn, animationOut, forward) {
         oldDom.style.position = ''
         oldDom.classList.remove('owo-animation')
         oldDom.classList.remove('owo-animation-forward')
-        // parentDom.style.perspective = ''
+        parentDom.style.perspective = ''
         // 清除临时设置的class
         for (var ind =0; ind < animationIn.length; ind++) {
           var value = animationIn[ind]
@@ -691,5 +690,4 @@ function switchRoute (view, newRouteIndex, animationIn, animationOut, forward) {
       }
     }, delay);
   }
-  _owo.handlePage(owo.script.page2.view.cardBox[1], newDom)
 }

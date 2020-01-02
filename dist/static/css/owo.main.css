@@ -229,32 +229,193 @@ li {
   z-index: 3;
   top: 1219px;
 }
-              [font="FZDBSJT.TTF"] {
-                font-family: 'FZDBSJT';
-              }
-              @font-face {
-                font-family: 'FZDBSJT';
-                src: url('../font/FZDBSJT.eot');
-                src: url('../font/FZDBSJT.eot?#iefix') format('embedded-opentype'),
-                  url('../font/FZDBSJT.woff') format('woff'),
-                  url('../font/FZDBSJT.ttf')  format('truetype'),
-                  url('../font/FZDBSJT.svg#MicrosoftYaHei') format('svg');
-              }
-            
-.scoreboard {
-  position: relative;
-  height: 40px;
-  line-height: 40px;
-  overflow: hidden;
-}
-
-.scoreboard .scoreboard-item {
-  position: absolute;
-  top: 0;
+.card {
   width: 100%;
   height: 100%;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
+  position: relative;
+}
+
+.card .so-5 {
+  position: absolute;
+  left: -182px;
+  top: 77px;
+}
+
+.card .text {
+  position: absolute;
+  top: 327px;
+  left: 81px;
+}
+
+.card .people {
+  position: absolute;
+  top: 514px;
+  left: 254px;
+}
+
+.card .lable {
+  position: absolute;
+  font-size: 33px;
+  line-height: 1.7;
+  color: #202021;
+  width: 436px;
+  bottom: 272px;
+  left: 254px;
+  height: 166px;
+  text-indent: 2em;
+  background-repeat: no-repeat;
+  background-size: 401px 166px;
+  background-image: url('../resource/lable-1.png');
+}
+
+.card .num {
+  position: absolute;
+  top: 290px;
+  right: 54px;
+  font-size: 38px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+}
+
+/* 动画效果 */
+
+@-webkit-keyframes smallerleft {
+  from {
+    left: 3px;
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
+}
+
+@keyframes smallerleft {
+  from {
+    left: 3px;
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
+}
+
+@-webkit-keyframes hideToLeft {
+  from {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
+}
+
+@keyframes hideToLeft {
+  from {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
+}
+
+/* 动画效果 */
+
+@-webkit-keyframes smaller {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes smaller {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@-webkit-keyframes smallerOut {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+}
+
+@keyframes smallerOut {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes hideToTop {
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes hideToTop {
+  100% {
+    height: 0;
+  }
+}
+
+/* 动画效果 */
+
+@-webkit-keyframes bottomSmaller {
+  from {
+    height: 0;
+  }
+
+  100% {
+    height: 166px;
+  }
+}
+
+@keyframes bottomSmaller {
+  from {
+    height: 0;
+  }
+
+  100% {
+    height: 166px;
+  }
 }
 .card {
   width: 100%;
@@ -280,15 +441,19 @@ li {
   left: 254px;
 }
 
-.card p {
+.card .lable {
   position: absolute;
   font-size: 33px;
   line-height: 1.7;
   color: #202021;
   width: 436px;
-  top: 1054px;
+  bottom: 272px;
   left: 254px;
+  height: 166px;
   text-indent: 2em;
+  background-repeat: no-repeat;
+  background-size: 401px 166px;
+  background-image: url('../resource/lable-1.png');
 }
 
 .card .num {
@@ -302,51 +467,77 @@ li {
   width: 200px;
   text-align: center;
 }
-.card {
-  width: 100%;
-  height: 100%;
-  position: relative;
+
+/* 动画效果 */
+
+@keyframes smallerleft {
+  from {
+    left: 3px;
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
 }
 
-.card .so-5 {
-  position: absolute;
-  left: -182px;
-  top: 77px;
+@keyframes hideToLeft {
+  from {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(-50vw, 0);
+            transform: translate(-50vw, 0);
+  }
 }
 
-.card .text {
-  position: absolute;
-  top: 327px;
-  left: 81px;
+/* 动画效果 */
+
+@keyframes smaller {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
-.card .people {
-  position: absolute;
-  top: 514px;
-  left: 254px;
+@keyframes smallerOut {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
 }
 
-.card p {
-  position: absolute;
-  font-size: 33px;
-  line-height: 1.7;
-  color: #202021;
-  width: 436px;
-  top: 1054px;
-  left: 254px;
-  text-indent: 2em;
+@keyframes hideToTop {
+  100% {
+    height: 0;
+  }
 }
 
-.card .num {
-  position: absolute;
-  top: 290px;
-  right: 54px;
-  font-size: 38px;
-  line-height: 40px;
-  height: 40px;
-  font-weight: bold;
-  width: 200px;
-  text-align: center;
+/* 动画效果 */
+
+@keyframes bottomSmaller {
+  from {
+    height: 0;
+  }
+
+  100% {
+    height: 166px;
+  }
 }
 .page-2 .so-13 {
   position: absolute;

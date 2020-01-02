@@ -2,20 +2,67 @@
 <template lang="pug">
 .card
   img.soulless.so-5.item-5(src="@|two-5.png|")
-  img.text(src="{{prop._title}}")
-  img.people(src="{{prop._people}}")
-  p(font="FZDBSJT.TTF") {{prop._text}}
-  plug.num(_name="scoreboard" _src="./src/module/scoreboard.owo" _text="/ 6 /")
+  img.text.ani(src="{{prop._title}}")
+  img.people.ani(src="{{prop._people}}")
+  .lable.ani
+  //- plug.num(_name="scoreboard" _src="./src/module/scoreboard.owo" _text="/ 6 /")
 </template>
 
 <script>
   module.exports = {
     data: {
-      likeNum: 20
+      likeNum: 20,
+      in: {
+        'text': "smallerleft 0.8s linear both 0.6s",
+        'people': 'smaller 1s linear both 1.2s',
+        'lable': 'bottomSmaller 1.2s linear both 0.2s'
+      },
+      out: {
+        'text': "hideToLeft 2s linear both",
+        'people': 'smallerOut 2.2s linear both',
+        'lable': 'hideToTop 2.4s linear both 0.2s'
+      }
+    },
+    addAni: function (params) {
+      for (const key in this.data.in) {
+        if (this.data.in.hasOwnProperty(key)) {
+          const ani = this.data.in[key];
+          this.$el.getElementsByClassName(`${key}`)[0].style.animation = ani
+        }
+      }
+      setTimeout(() => {
+        this.clearAni()
+        setTimeout(() => {
+          this.removeAni()
+        }, 2000);
+      }, 3000)
+    },
+    clearAni: function (params) {
+      for (const key in this.data.in) {
+        if (this.data.in.hasOwnProperty(key)) {
+          this.$el.getElementsByClassName(`${key}`)[0].style.animation = ''
+        }
+      }
+    },
+    removeAni: function (params) {
+      for (const key in this.data.out) {
+        if (this.data.out.hasOwnProperty(key)) {
+          const ani = this.data.out[key];
+          this.$el.getElementsByClassName(`${key}`)[0].style.animation = ani
+        }
+      }
+      setTimeout(() => {
+        this.clearAni()
+        setTimeout(() => {
+          this.addAni()
+        }, 2000);
+      }, 3000)
     },
     created: function (params) {
+      this.addAni()
+      
       console.log('加载了')
-      owo.tool.animate('zoomIn', this.$el.getElementsByClassName('text')[0], 1000)
+      // owo.tool.animate('zoomIn', this.$el.getElementsByClassName('text')[0], 1000)
       owo.tool.heart(this.$el, (params) => {
         // 增加计数器
         this.template.scoreboard.changeText(`/ ${this.data.likeNum++} /`)
@@ -46,15 +93,19 @@
   top: 514px;
   left: 254px;
 }
-p {
+.lable {
   position: absolute;
   font-size: 33px;
   line-height: 1.7;
   color: #202021;
   width: 436px;
-  top: 1054px;
+  bottom: 272px;
   left: 254px;
+  height: 166px;
   text-indent: 2em;
+  background-repeat: no-repeat;
+  background-size: 401px 166px;
+  background-image: url('@|lable-1.png|');
 }
 .num {
   position: absolute;
@@ -67,5 +118,67 @@ p {
   width: 200px;
   text-align: center;
 }
+
+/* 动画效果 */
+@keyframes smallerleft {
+  from {
+    left: 3px;
+    transform: translate(-50vw, 0);
+  }
+  50% {
+  }
+}
+
+@keyframes hideToLeft {
+  from {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50vw, 0);
+  }
+}
+
+/* 动画效果 */
+@keyframes smaller {
+  from {
+    opacity: 0;
+    transform: scale3d(2.3, 2.3, 2.3);
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes smallerOut {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+}
+
+@keyframes hideToTop {
+  100% {
+    height: 0;
+  }
+}
+
+/* 动画效果 */
+@keyframes bottomSmaller {
+  from {
+    height: 0;
+    // transform: scale3d(2.1, 2.1, 2.1) translate(0, 50vh);
+  }
+  100% {
+    height: 166px;
+  }
+}
+
 </style>
           
