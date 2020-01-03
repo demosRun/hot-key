@@ -82,6 +82,10 @@ module.exports = {
 		"name": "main",
 		"src": "./src/main.js",
 		"resource": true
+	}, {
+		"name": "html2canvas.min",
+		"src": "./src/resource/html2canvas.min.js",
+		"resource": true
 	}],
 	"styleList": [{
 		"name": "main",

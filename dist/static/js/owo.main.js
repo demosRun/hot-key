@@ -1,4 +1,4 @@
-// Thu Jan 02 2020 19:49:54 GMT+0800 (GMT+08:00)
+// Fri Jan 03 2020 16:58:45 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {}
@@ -413,13 +413,44 @@ owo.tool.animate = function (name, dom, delay) {
     }
   }
 }
+/**
+ * 显示toast提示 不支持ie8
+ * @param  {number} text       显示的文字
+ * @param  {number} fontSize   字体大小
+ * @param  {number} time       显示时长
+ * @param  {number} container  显示容器
+ */
+
+owo.tool.toast = function (text, config) {
+  if (!config) config = {}
+  time = config.time || 2000
+  fontSize = config.fontSize || 14
+  container = config.container || document.body
+  if (window.owo.state.toastClock) {
+    clearTimeout(window.owo.state.toastClock)
+    hideToast()
+  }
+  var toast = document.createElement("div")
+  toast.setAttribute("id", "toast")
+  toast.setAttribute("class", "toast")
+  // 设置样式
+  toast.style.cssText = "position:fixed;z-index:999;background-color:rgba(0, 0, 0, 0.8);bottom:9%;border-radius:" + parseInt(fontSize / 3) + "px;left:50%;transform: translateX(-50%) translate3d(0, 0, 0);margin:0 auto;text-align:center;color:white;max-width:60%;padding:" + parseInt(fontSize / 2) + "px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:" + fontSize + 'px;'
+
+  toast.innerHTML = text
+  container.appendChild(toast)
+  function hideToast() {
+    document.getElementById('toast').outerHTML = ''
+    window.owo.state.toastClock = null
+  }
+  window.owo.state.toastClock = setTimeout(hideToast, time)
+}
 owo.tool.heart = function (dom, callBack) {
   dom.ontouchstart = function (e) {
     var x = e.touches[0].pageX;
     var y = e.touches[0].pageY;
     var star = document.createElement("div");
-    star.innerHTML = '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M550.4 947.2c-21.333333 17.066667-53.333333 17.066667-74.666667 0C360.533333 864 21.333333 595.2 21.333333 366.933333c0-42.666667 4.266667-72.533333 14.933334-93.866666C74.666667 151.466667 187.733333 64 320 64c66.133333 0 128 23.466667 179.2 59.733333 8.533333 6.4 19.2 6.4 25.6 0C576 87.466667 637.866667 64 704 64c132.266667 0 243.2 87.466667 283.733333 209.066667 10.666667 21.333333 14.933333 53.333333 14.933334 96 0 226.133333-339.2 494.933333-452.266667 578.133333zM332.8 544C198.4 462.933333 213.333333 332.8 213.333333 326.4c2.133333-12.8-6.4-23.466667-17.066666-23.466667-10.666667-2.133333-23.466667 6.4-23.466667 19.2 0 6.4-21.333333 162.133333 138.666667 260.266667 4.266667 2.133333 6.4 2.133333 10.666666 2.133333 6.4 0 14.933333-4.266667 19.2-10.666666 4.266667-10.666667 0-23.466667-8.533333-29.866667z" fill="#d81e06" p-id="2773"></path></svg>';
-    var RandomSize = parseInt(Math.random() * 40 + 20);
+    star.innerHTML = '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2122"><path d="M753.266187 77.352518A270.218129 270.218129 0 0 0 512 230.510504 270.218129 270.218129 0 0 0 270.733813 77.352518C121.480288 77.352518 0 203.105612 0 357.663309c0 240.750504 257.841727 460.431655 498.444892 585.669065a29.467626 29.467626 0 0 0 27.110216 0c240.971511-125.23741 498.444892-344.918561 498.444892-585.669065 0-154.557698-121.480288-280.310791-270.733813-280.310791z" fill="#a11f1b" p-id="2123"></path></svg>';
+    var RandomSize = parseInt(Math.random() * 20 + 20);
     star.style.height = star.style.width = RandomSize + "px";
     star.style.color = "red";
     star.style.pointerEvents = 'none'

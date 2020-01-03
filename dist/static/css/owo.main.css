@@ -229,15 +229,46 @@ li {
   z-index: 3;
   top: 1219px;
 }
+.scoreboard {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+
+.scoreboard .scoreboard-item {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+.scoreboard {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+
+.scoreboard .scoreboard-item {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
 .card {
   width: 100%;
   height: 100%;
+  z-index: 4;
   position: relative;
 }
 
 .card .so-5 {
   position: absolute;
-  left: -182px;
+  left: 0;
   top: 77px;
 }
 
@@ -249,8 +280,9 @@ li {
 
 .card .people {
   position: absolute;
-  top: 514px;
-  left: 254px;
+  top: 404px;
+  left: 260px;
+  z-index: 999;
 }
 
 .card .lable {
@@ -258,14 +290,20 @@ li {
   font-size: 33px;
   line-height: 1.7;
   color: #202021;
-  width: 436px;
-  bottom: 272px;
-  left: 254px;
-  height: 166px;
+  width: 480px;
+  bottom: 198px;
+  left: 227px;
+  height: 350px;
   text-indent: 2em;
-  background-repeat: no-repeat;
-  background-size: 401px 166px;
-  background-image: url('../resource/lable-1.png');
+  overflow: hidden;
+}
+
+.card .lable img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .card .num {
@@ -280,45 +318,43 @@ li {
   text-align: center;
 }
 
+.card .doit {
+  width: 47px;
+  height: 47px;
+  position: absolute;
+  top: 248px;
+  left: 180px;
+  color: white;
+  background-image: url('../resource/doit.png');
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 44px;
+  text-align: center;
+}
+
 /* 动画效果 */
 
 @-webkit-keyframes smallerleft {
   from {
-    left: 3px;
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
 @keyframes smallerleft {
   from {
-    left: 3px;
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
-  }
-}
-
-@-webkit-keyframes hideToLeft {
-  from {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
   }
 
   100% {
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
-  }
-}
-
-@keyframes hideToLeft {
-  from {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-
-  100% {
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
+    opacity: 1;
   }
 }
 
@@ -331,8 +367,8 @@ li {
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
-  50% {
-    opacity: 0.5;
+  100% {
+    opacity: 1;
   }
 }
 
@@ -343,56 +379,200 @@ li {
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
-  50% {
-    opacity: 0.5;
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes hideToLeft {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  60% {
+    opacity: 0;
+    -webkit-transform: translate(-100vw, 0);
+            transform: translate(-100vw, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes hideToLeft {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  60% {
+    opacity: 0;
+    -webkit-transform: translate(-100vw, 0);
+            transform: translate(-100vw, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes hideToLeft2 {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  60% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes hideToLeft2 {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  60% {
+    opacity: 0;
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
   }
 }
 
 @-webkit-keyframes smallerOut {
-  from {
+  0% {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
 
-  80% {
+  30% {
     opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
   }
 
-  100% {
+  50% {
     opacity: 0;
-    -webkit-transform: scale3d(0, 0, 0);
-            transform: scale3d(0, 0, 0);
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  80% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
   }
 }
 
 @keyframes smallerOut {
-  from {
+  0% {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
 
-  80% {
+  30% {
     opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
   }
 
-  100% {
+  50% {
     opacity: 0;
-    -webkit-transform: scale3d(0, 0, 0);
-            transform: scale3d(0, 0, 0);
+    -webkit-transform: scale3d(2.3, 2.3, 2.3);
+            transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  80% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
   }
 }
 
 @-webkit-keyframes hideToTop {
-  100% {
+  0% {
+    height: 350px;
+  }
+
+  40% {
     height: 0;
+  }
+
+  60% {
+    height: 0;
+  }
+
+  100% {
+    height: 350px;
   }
 }
 
 @keyframes hideToTop {
-  100% {
+  0% {
+    height: 350px;
+  }
+
+  40% {
     height: 0;
+  }
+
+  60% {
+    height: 0;
+  }
+
+  100% {
+    height: 350px;
   }
 }
 
@@ -404,7 +584,7 @@ li {
   }
 
   100% {
-    height: 166px;
+    height: 350px;
   }
 }
 
@@ -414,129 +594,7 @@ li {
   }
 
   100% {
-    height: 166px;
-  }
-}
-.card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.card .so-5 {
-  position: absolute;
-  left: -182px;
-  top: 77px;
-}
-
-.card .text {
-  position: absolute;
-  top: 327px;
-  left: 81px;
-}
-
-.card .people {
-  position: absolute;
-  top: 514px;
-  left: 254px;
-}
-
-.card .lable {
-  position: absolute;
-  font-size: 33px;
-  line-height: 1.7;
-  color: #202021;
-  width: 436px;
-  bottom: 272px;
-  left: 254px;
-  height: 166px;
-  text-indent: 2em;
-  background-repeat: no-repeat;
-  background-size: 401px 166px;
-  background-image: url('../resource/lable-1.png');
-}
-
-.card .num {
-  position: absolute;
-  top: 290px;
-  right: 54px;
-  font-size: 38px;
-  line-height: 40px;
-  height: 40px;
-  font-weight: bold;
-  width: 200px;
-  text-align: center;
-}
-
-/* 动画效果 */
-
-@keyframes smallerleft {
-  from {
-    left: 3px;
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
-  }
-}
-
-@keyframes hideToLeft {
-  from {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-
-  100% {
-    -webkit-transform: translate(-50vw, 0);
-            transform: translate(-50vw, 0);
-  }
-}
-
-/* 动画效果 */
-
-@keyframes smaller {
-  from {
-    opacity: 0;
-    -webkit-transform: scale3d(2.3, 2.3, 2.3);
-            transform: scale3d(2.3, 2.3, 2.3);
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes smallerOut {
-  from {
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-  }
-
-  80% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: scale3d(0, 0, 0);
-            transform: scale3d(0, 0, 0);
-  }
-}
-
-@keyframes hideToTop {
-  100% {
-    height: 0;
-  }
-}
-
-/* 动画效果 */
-
-@keyframes bottomSmaller {
-  from {
-    height: 0;
-  }
-
-  100% {
-    height: 166px;
+    height: 350px;
   }
 }
 .page-2 .so-13 {
@@ -593,7 +651,8 @@ li {
   position: absolute;
   left: 411px;
   z-index: 7;
-  top: 307px;
+  top: 575px;
+  opacity: 0.2;
   -webkit-animation-duration: 4s;
           animation-duration: 4s;
 }
@@ -621,6 +680,7 @@ li {
   left: 602px;
   z-index: 12;
   top: 879px;
+  opacity: 0.2;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
 }
@@ -661,11 +721,84 @@ li {
           animation-duration: 7s;
 }
 
-.page-2 [view] {
-  z-index: 4;
+.page-2 .button {
+  position: absolute;
+  bottom: 7%;
+  background-color: black;
+  font-size: 30px;
+  width: 200px;
+  color: white;
+  line-height: 40px;
+  z-index: 999;
+  text-align: center;
+  right: 0;
 }
 .page-3 {
   background-image: url('../resource/three-bg.jpg');
+}
+
+.page-3 .reload {
+  position: absolute;
+  bottom: 150px;
+  left: 120px;
+}
+
+.page-3 .save {
+  position: absolute;
+  bottom: 150px;
+  right: 120px;
+}
+
+.page-3 .like-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3%;
+  bottom: 0;
+  margin: auto;
+  max-height: 530px;
+}
+
+.page-3 .canvas-image {
+  opacity: 0;
+}
+
+.page-3 .share-text {
+  position: absolute;
+  bottom: 300px;
+  left: 0;
+  right: -13%;
+  margin: auto;
+  width: 480px;
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.page-3 .share-text span {
+  background-color: #8f1a1c;
+  border-radius: 8px;
+  padding: 4px 5px;
+  margin: 0 5px;
+  color: #deab8e;
+}
+
+.page-3 .button {
+  display: none;
+}
+
+.page-3 .ok .button {
+  display: block;
+}
+
+.page-3 .all-number {
+  position: absolute;
+  top: 297px;
+  font-size: 30px;
+  font-weight: bold;
+  right: 126px;
+  line-height: 40px;
 }
 /* 页面切换动画 */
 .o-page-scaleDownCenter {

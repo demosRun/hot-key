@@ -15,9 +15,8 @@
   img.soulless.so-15.item-15(src="@|two-15.png|" o-animation="floatUpDown")
   img.soulless.so-3.item-3(src="@|two-3.png|" o-animation="floatUpDown")
   img.soulless.so-4.item-4(src="@|two-4.png|" o-animation="floatUpDown")
-  view(_name="cardBox")
-    route(_name="card" _src="./src/route/card.owo" _title="@|text-1.png|" _text="我将无我，不负人民。我愿意做到一个“无我”的状态，为中国的发展奉献自己。" _people="@|img-1.png|")
-    route(_name="card2" _src="./src/route/card.owo" _title="@|text-2.png|" _text="京津冀如同一朵花上的花瓣，瓣瓣不同，却瓣瓣同心。" _people="@|img-2.png|")
+  plug(_name="card" _src="./src/route/card.owo" _title="@|text-1.png|" _people="@|img-1.png|")
+  //- .button(o-tap="owo.script.page2.template.card.next()") 下一个按钮
 </template>
 
 <script>
@@ -71,7 +70,8 @@
   position: absolute;
   left: 411px;
   z-index: 7;
-  top: 307px;
+  top: 575px;
+  opacity: 0.2;
   animation-duration: 4s;
 }
 .so-6 {
@@ -93,6 +93,7 @@
   left: 602px;
   z-index: 12;
   top: 879px;
+  opacity: 0.2;
   animation-duration: 5s;
 }
 .so-8 {
@@ -123,8 +124,17 @@
   top: 1219px;
   animation-duration: 7s;
 }
-[view] {
-  z-index: 4;
+.button {
+  position: absolute;
+  bottom: 7%;
+  background-color: black;
+  font-size: 30px;
+  width: 200px;
+  color: white;
+  line-height: 40px;
+  z-index: 999;
+  text-align: center;
+  right: 0;
 }
 </style>
           

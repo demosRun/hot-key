@@ -16,6 +16,8 @@ html {
   background-position: center top;
   background-size: cover;
   height: 100vh;
+  position: fixed;
+  top: 0;
 }
 h1, h2, h3, h4, h5, input {
   margin: 0;

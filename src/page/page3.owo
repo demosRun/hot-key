@@ -1,11 +1,64 @@
 
 <template lang="pug">
 .page-3
-  
+  //- 下方两个按钮
+  img.reload.button(src="@|reload-button.png|" o-tap="location.reload()")
+  img.save.button(src="@|save-button.png|")
+  img.like-text
+  .share-text
+  img.canvas-image
+  p.all-number
 </template>
 
 <script>
   module.exports = {
+    data: {
+      likeList: [
+        '追梦人',
+        '瓣瓣不同，却瓣瓣同心',
+        '黑天鹅、灰犀牛',
+        '共和国是红色的',
+        '不获全胜决不收兵',
+        '实实在在、心无旁骛做实业',
+        '基层减负',
+        '我将无我，不负人民',
+        '两不愁三保障',
+        '做好我们自己的事情',
+        '不忘初心、牢记使命',
+        '垃圾分类',
+        '新时代的长征路',
+        '斗争精神',
+        '区块链',
+        '国家治理体系和治理能力现代化',
+        '中国市场这么大，欢迎大家都来看看',
+        '用不着任何外部势力指手画脚'
+      ]
+    },
+    created: function (params) {
+      
+      let maxIndex = 0
+      let maxNum = 0
+      const likeList = owo.script.page2.template.card.data.likeNum
+      for (const key in likeList) {
+        const num = likeList[key]
+        if (num > maxNum) {
+          maxNum = num
+          maxIndex = key
+        }
+      }
+      owo.query('.all-number')[0].innerHTML = `/ ${owo.script.page2.template.card.data.allNumber} /`
+      owo.query('.share-text')[0].innerHTML = `你为习近平热词点赞<span>${owo.script.page2.template.card.data.allNumber}</span>次<br>为<span>${this.data.likeList[maxIndex]}</span>点出最高赞！`
+      owo.query('.like-text')[0].src = `./static/resource/text-${maxIndex}.png`
+      setTimeout(() => {
+        html2canvas(document.body, {height: window.innerHeight}).then(function(canvas) {
+          let base64Img = canvas.toDataURL('image/jpg')
+          owo.query('.canvas-image')[0].src = base64Img
+        });
+        setTimeout(() => {
+          this.$el.classList.add('ok')
+        }, 1000)
+      }, 2000);
+    }
   }
 </script>
 
@@ -13,6 +66,61 @@
 <style lang="less">
 .page-3 {
   background-image: url('@|three-bg.jpg|');
+}
+.reload {
+  position: absolute;
+  bottom: 150px;
+  left: 120px;
+}
+.save {
+  position: absolute;
+  bottom: 150px;
+  right: 120px;
+}
+.like-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3%;
+  bottom: 0;
+  margin: auto;
+  max-height: 530px;
+}
+.canvas-image {
+  opacity: 0;
+}
+.share-text {
+  position: absolute;
+  bottom: 300px;
+  left: 0;
+  right: -13%;
+  margin: auto;
+  width: 480px;
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  span {
+    background-color: #8f1a1c;
+    border-radius: 8px;
+    padding: 4px 5px;
+    margin: 0 5px;
+    color: #deab8e;
+  }
+}
+.button {
+  display: none;
+}
+.ok .button {
+  display: block;
+}
+.all-number {
+  position: absolute;
+  top: 297px;
+  font-size: 30px;
+  font-weight: bold;
+  right: 126px;
+  line-height: 40px;
 }
 </style>
           

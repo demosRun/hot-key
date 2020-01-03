@@ -3,6 +3,7 @@ var deviseW = 750
 // 设计高度
 var deviseH = 1508
 
+var scaleHeight = 0
 function getScale () {
   const scaleBox = document.getElementsByClassName('scale-box')[0]
   // 如果比例大于1则进入电脑模式
@@ -22,14 +23,12 @@ function getScale () {
     scaleBox.style.transformOrigin = '0 0 0'
   }
   setTimeout(() => {
-    var scaleHeight = scaleBox.offsetHeight * scale
+    scaleHeight = scaleBox.offsetHeight * scale
     if (window.innerHeight > scaleHeight) {
-      document.getElementsByTagName('html')[0].style.height = 100 + '%'
+      document.body.style.height = 100 + '%'
     } else {
-      document.getElementsByTagName('html')[0].style.height = scaleHeight + 'px'
+      document.body.style.height = scaleHeight + 'px'
     }
-    
-    
   }, 0)
 }
 
