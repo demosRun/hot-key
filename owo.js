@@ -96,6 +96,9 @@ module.exports = {
 		"src": "./src/resource/swiper.4.5.0.min.css"
 	}],
 	"pageList": [{
+		"name": "loading",
+		"src": "./src/page/loading.owo"
+	}, {
 		"name": "page1",
 		"src": "./src/page/page1.owo",
 		"type": "page",

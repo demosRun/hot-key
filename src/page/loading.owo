@@ -1,0 +1,126 @@
+<template lang="pug">
+.loading-box
+  img.soulless.so-12.item-12(src="@|one-12.png|" o-animation="floatLeftRight")
+  img.soulless.so-9.item-9(src="@|one-9.png|" o-animation="floatUpDown")
+  img.soulless.so-2.item-2(src="@|one-2.png|")
+  img.soulless.so-3.item-3(src="@|one-3.png|")
+  img(src="@|loading.gif|")
+  .line
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      imgList: [
+        '@|two-5.png|',
+        '@|img-0.png|',
+        '@|img-1.png|',
+        '@|img-2.png|',
+        '@|img-3.png|',
+        '@|img-4.png|',
+        '@|img-5.png|',
+        '@|text-0.png|',
+        '@|text-1.png|',
+        '@|text-2.png|',
+        '@|text-3.png|',
+        '@|text-4.png|',
+        '@|one-1.png|',
+        '@|one-2.png|',
+        '@|one-3.png|',
+        '@|one-4.png|',
+        '@|one-5.png|',
+        '@|one-6.png|',
+        '@|one-7.png|',
+        '@|one-8.png|',
+        '@|one-9.png|',
+        '@|one-10.png|',
+        '@|one-11.png|',
+        '@|one-12.png|',
+        '@|one-13.png|',
+        '@|one-14.png|',
+        '@|one-15.png|',
+        '@|one-16.png|',
+        '@|one-17.png|',
+      ]
+    },
+    created: function () {
+      const mum = owo.query('.line')[0]
+      this.preloadImages(this.data.imgList, (e) => {
+        setTimeout(() => {
+          owo.go('page1', '', '', '', '', true)
+        }, 800)
+      }, (num) => {
+        mum.style.width = num + '%'
+      })
+    },
+    preloadImage: function (src, successFn) {
+      var image = new Image()
+      image.src = src
+      image.onload = function () {
+        successFn && successFn(src)
+      }
+      image.onerror = function (error) {
+        successFn && successFn(src)
+      }
+    },
+    preloadImages: function (srcs, doneFn, progressFn) {
+      if (!Array.isArray(srcs)) {
+        console.log('第一个参数只能是一个数组')
+      } else {
+        var allCount = srcs.length
+        var doneCount = 0
+        srcs.forEach((srcItem) => {
+          this.preloadImage(srcItem, function () {
+            doneCount++
+            progressFn && progressFn(Math.ceil(100 * doneCount / allCount))
+            if (doneCount === allCount) {
+              doneFn && doneFn()
+            }
+          })
+        })
+      }
+    }
+  }
+</script>
+
+
+<style lang="less">
+.loading-box {
+  background-image: url('@|one-1.png|');
+}
+.so-12 {
+  position: absolute;
+  left: 72px;
+  z-index: 12;
+  top: 31px;
+}
+.so-9 {
+  position: absolute;
+  left: 635px;
+  z-index: 9;
+  top: 0px;
+}
+.line {
+  position: absolute;
+  width: 0%;
+  background-color: #c6281b;
+  top: 2%;
+  bottom: 0;
+  margin: auto;
+  height: 4px;
+  left: 0;
+  right: 0;
+}
+.so-2 {
+  position: absolute;
+  left: 159px;
+  z-index: 2;
+  top: 1264px;
+}
+.so-3 {
+  position: absolute;
+  left: 599px;
+  z-index: 3;
+  top: 1219px;
+}
+</style>

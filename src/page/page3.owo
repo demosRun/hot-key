@@ -8,6 +8,7 @@
   .share-text
   img.canvas-image
   p.all-number
+  img.people-image
 </template>
 
 <script>
@@ -49,6 +50,7 @@
       owo.query('.all-number')[0].innerHTML = `/ ${owo.script.page2.template.card.data.allNumber} /`
       owo.query('.share-text')[0].innerHTML = `你为习近平热词点赞<span>${owo.script.page2.template.card.data.allNumber}</span>次<br>为<span>${this.data.likeList[maxIndex]}</span>点出最高赞！`
       owo.query('.like-text')[0].src = `./static/resource/text-${maxIndex}.png`
+      owo.query('.people-image')[0].src = `./static/resource/img-${maxIndex}.png`
       setTimeout(() => {
         html2canvas(document.body, {height: window.innerHeight}).then(function(canvas) {
           let base64Img = canvas.toDataURL('image/jpg')
@@ -91,19 +93,19 @@
 }
 .share-text {
   position: absolute;
-  bottom: 300px;
+  bottom: 305px;
   left: 0;
   right: -13%;
   margin: auto;
   width: 480px;
   font-size: 30px;
-  line-height: 48px;
+  line-height: 50px;
   font-weight: bold;
   letter-spacing: 4px;
   span {
     background-color: #8f1a1c;
     border-radius: 8px;
-    padding: 4px 5px;
+    padding: 2px 5px;
     margin: 0 5px;
     color: #deab8e;
   }
@@ -121,6 +123,14 @@
   font-weight: bold;
   right: 126px;
   line-height: 40px;
+}
+.people-image {
+  position: absolute;
+  top: 19%;
+  left: 17px;
+  right: 0;
+  margin: auto;
+  width: 196px;
 }
 </style>
           

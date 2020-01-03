@@ -5,7 +5,8 @@
   img.soulless.so-4.item-4(src="@|one-4.png|")
   img.soulless.so-13.item-13(src="@|one-13.png|" o-animation="floatLeftRight")
   img.soulless.so-8.item-8(src="@|one-8.png|" o-animation="floatLeftRight")
-  img.soulless.so-10.item-10(src="@|one-10.png|" o-animation="floatUpDown")
+  img.soulless.so-10.item-10(src="@|one-10-1.png|" o-animation="floatUpDown")
+  img.soulless.so-10.so-10-2.item-10(src="@|one-10-2.png|" o-animation="floatUpDown")
   img.soulless.so-15.item-15(src="@|one-15.png|" o-animation="floatUpDown")
   img.soulless.so-6.item-6(src="@|one-6.png|" o-animation="floatUpDown")
   img.soulless.so-11.item-11(src="@|one-11.png|" o-animation="floatLeftRight")
@@ -27,7 +28,7 @@
       bgMusic = new Audio("@|bg.mp3|")
       bgMusic.loop = true
       bgMusic.play()
-      owo.go('page2', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400')
+      owo.go('page2', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400', true)
     }
   }
 </script>
@@ -71,7 +72,7 @@
   position: absolute;
   left: 331px;
   z-index: 10;
-  top: 329px;
+  top: 374px;
 }
 .so-15 {
   position: absolute;
@@ -126,5 +127,9 @@
   left: 599px;
   z-index: 3;
   top: 1219px;
+}
+.so-10-2 {
+  top: 612px;
+  animation-duration: 3.4s;
 }
 </style>

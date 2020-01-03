@@ -4,6 +4,8 @@
   img.soulless.so-5.item-5(src="@|two-5.png|")
   img.text.ani(src="")
   img.people.ani(src="")
+  img.xiyu.ani(src="@|xiyu.png|")
+  img.clould(src="@|clould.png|")
   .lable.ani
     img
   plug.num(_name="scoreboard" _src="./src/module/scoreboard.owo" _text="/ 6 /")
@@ -21,17 +23,20 @@
       in: {
         'text': "smallerleft 0.8s ease-in both 0s",
         'people': 'smaller 0.4s ease-in both 0s',
-        'lable': 'bottomSmaller 0.6s linear both 0s'
+        'lable': 'bottomSmaller 0.6s linear both 0s',
+        'xiyu': 'smaller 0.3s ease-in both 0s'
       },
       out: {
         'text': "hideToLeft 3s ease-in-out both",
         'people': 'smallerOut 3.2s ease-in-out both 0.8s',
-        'lable': 'hideToTop 3s ease-in-out both 0.4s'
+        'lable': 'hideToTop 3s ease-in-out both 0.4s',
+        'xiyu': 'smallerOut 3s ease-in-out both 0.8s'
       },
       out2: {
         'text': "hideToLeft2 3s ease-in-out both",
         'people': 'smallerOut 3.2s ease-in-out both 0.8s',
-        'lable': 'hideToTop 3s ease-in-out both 0.4s'
+        'lable': 'hideToTop 3s ease-in-out both 0.4s',
+        'xiyu': 'hideToLeft2 2.8s ease-in-out both'
       },
       infoList: [
         {
@@ -158,7 +163,7 @@
         // 播放完成进入下一页
         if (this.data.nowIndex > 17) {
           setTimeout(() => {
-            owo.go('page3', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400')
+            owo.go('page3', 'scaleDownCenter', 'scaleUpCenter&&delay400', 'scaleDownCenter', 'scaleUpCenter&&delay400', true)
           }, 0)
         } else {
           setTimeout(() => {this.next()}, 1000)
@@ -170,8 +175,7 @@
       setTimeout(() => {
         this.template.doit.changeText(this.data.nowIndex )
         if (this.data.likeNum[this.data.nowIndex] == undefined) this.data.likeNum[this.data.nowIndex] = 0
-        this.data.likeNum[this.data.nowIndex]++
-        this.template.scoreboard.changeText(`${this.data.allNumber++}`)
+        this.template.scoreboard.changeText(`${this.data.allNumber}`)
       }, 0)
       owo.query('.text')[0].src = this.data.infoList[ind].text
       owo.query('.people')[0].src = this.data.infoList[ind].people
@@ -199,8 +203,8 @@
       // owo.tool.animate('zoomIn', this.$el.getElementsByClassName('text')[0], 1000)
       owo.tool.heart(this.$el, (params) => {
         // 增加计数器
-        this.data.likeNum[this.data.nowIndex]++
-        this.template.scoreboard.changeText(`${this.data.allNumber++}`)
+        this.data.likeNum[this.data.nowIndex]
+        this.template.scoreboard.changeText(`${++this.data.allNumber}`)
       })
     }
   }
@@ -300,18 +304,22 @@
 @keyframes hideToLeft {
   from {
     opacity: 1;
+    transform: translate(0, 0);
     transform: scale3d(1, 1, 1);
   }
   40% {
     opacity: 0;
+    transform: translate(0, 0);
     transform: scale3d(2.3, 2.3, 2.3);
   }
   60% {
     opacity: 0;
+    transform: scale3d(1, 1, 1);
     transform: translate(-100vw, 0);
   }
   100% {
     opacity: 1;
+    transform: scale3d(1, 1, 1);
     transform: translate(0, 0);
   }
 }
@@ -381,6 +389,19 @@
     height: 350px;
   }
 }
-
+.xiyu {
+  position: absolute;
+  top: 862px;
+  z-index: 9;
+  left: 296px;
+}
+.clould {
+  position: absolute;
+  top: 735px;
+  z-index: 9;
+  left: 404px;
+  user-select: none;
+  pointer-events: none;
+}
 </style>
           

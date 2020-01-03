@@ -1,4 +1,4 @@
-// Fri Jan 03 2020 16:58:45 GMT+0800 (GMT+08:00)
+// Fri Jan 03 2020 19:24:24 GMT+0800 (GMT+08:00)
 var owo = {tool: {},state: {},};
 /* 方法合集 */
 var _owo = {}
@@ -258,6 +258,11 @@ _owo.showPage = function() {
   // 取出URL地址判断当前所在页面
   var pageArg = _owo.getarg(window.location.hash)
   
+  if (pageArg !== null) {
+    window.location.href = ''
+    return
+  }
+  
   
 
   // 计算$dom
@@ -434,7 +439,7 @@ owo.tool.toast = function (text, config) {
   toast.setAttribute("id", "toast")
   toast.setAttribute("class", "toast")
   // 设置样式
-  toast.style.cssText = "position:fixed;z-index:999;background-color:rgba(0, 0, 0, 0.8);bottom:9%;border-radius:" + parseInt(fontSize / 3) + "px;left:50%;transform: translateX(-50%) translate3d(0, 0, 0);margin:0 auto;text-align:center;color:white;max-width:60%;padding:" + parseInt(fontSize / 2) + "px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:" + fontSize + 'px;'
+  toast.style.cssText = "position:fixed;z-index:999;background-color:rgba(0, 0, 0, 0.8);top:17%;border-radius:" + parseInt(fontSize / 3) + "px;left:50%;transform: translateX(-40%) translate3d(0, 0, 0);margin:0 auto;text-align:center;color:white;max-width:60%;padding:" + parseInt(fontSize / 2) + "px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:" + fontSize + 'px;'
 
   toast.innerHTML = text
   container.appendChild(toast)

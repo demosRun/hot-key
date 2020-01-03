@@ -108,7 +108,50 @@ li {
   50% {-webkit-transform: translateY(-8vh);transform: translateY(-8vh);}
   100% {-webkit-transform: translateY(-4vh);transform: translateY(-4vh);}
 }
-.owo-animation-shrink {
+
+.loading-box {
+  background-image: url('../resource/one-1.png');
+}
+
+.loading-box .so-12 {
+  position: absolute;
+  left: 72px;
+  z-index: 12;
+  top: 31px;
+}
+
+.loading-box .so-9 {
+  position: absolute;
+  left: 635px;
+  z-index: 9;
+  top: 0px;
+}
+
+.loading-box .line {
+  position: absolute;
+  width: 0%;
+  background-color: #c6281b;
+  top: 2%;
+  bottom: 0;
+  margin: auto;
+  height: 4px;
+  left: 0;
+  right: 0;
+}
+
+.loading-box .so-2 {
+  position: absolute;
+  left: 159px;
+  z-index: 2;
+  top: 1264px;
+}
+
+.loading-box .so-3 {
+  position: absolute;
+  left: 599px;
+  z-index: 3;
+  top: 1219px;
+}.owo-animation-shrink {
   -webkit-animation: shrink 1s linear alternate infinite;
   animation: shrink 1s linear alternate infinite;
 }
@@ -164,7 +207,7 @@ li {
   position: absolute;
   left: 331px;
   z-index: 10;
-  top: 329px;
+  top: 374px;
 }
 
 .page-1 .so-15 {
@@ -228,6 +271,12 @@ li {
   left: 599px;
   z-index: 3;
   top: 1219px;
+}
+
+.page-1 .so-10-2 {
+  top: 612px;
+  -webkit-animation-duration: 3.4s;
+          animation-duration: 3.4s;
 }
 .scoreboard {
   position: relative;
@@ -387,24 +436,32 @@ li {
 @-webkit-keyframes hideToLeft {
   from {
     opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
 
   40% {
     opacity: 0;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
     -webkit-transform: scale3d(2.3, 2.3, 2.3);
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
   60% {
     opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
     -webkit-transform: translate(-100vw, 0);
             transform: translate(-100vw, 0);
   }
 
   100% {
     opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
@@ -413,24 +470,32 @@ li {
 @keyframes hideToLeft {
   from {
     opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }
 
   40% {
     opacity: 0;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
     -webkit-transform: scale3d(2.3, 2.3, 2.3);
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
   60% {
     opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
     -webkit-transform: translate(-100vw, 0);
             transform: translate(-100vw, 0);
   }
 
   100% {
     opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
@@ -597,6 +662,25 @@ li {
     height: 350px;
   }
 }
+
+.card .xiyu {
+  position: absolute;
+  top: 862px;
+  z-index: 9;
+  left: 296px;
+}
+
+.card .clould {
+  position: absolute;
+  top: 735px;
+  z-index: 9;
+  left: 404px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
 .page-2 .so-13 {
   position: absolute;
   left: 72px;
@@ -649,10 +733,10 @@ li {
 
 .page-2 .so-7 {
   position: absolute;
-  left: 411px;
+  left: 553px;
   z-index: 7;
-  top: 575px;
-  opacity: 0.2;
+  top: 773px;
+  opacity: 0.7;
   -webkit-animation-duration: 4s;
           animation-duration: 4s;
 }
@@ -677,10 +761,11 @@ li {
 
 .page-2 .so-12 {
   position: absolute;
-  left: 602px;
+  left: 178px;
   z-index: 12;
-  top: 879px;
-  opacity: 0.2;
+  top: 874px;
+  opacity: 0.6;
+  width: 89px;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
 }
@@ -765,13 +850,13 @@ li {
 
 .page-3 .share-text {
   position: absolute;
-  bottom: 300px;
+  bottom: 305px;
   left: 0;
   right: -13%;
   margin: auto;
   width: 480px;
   font-size: 30px;
-  line-height: 48px;
+  line-height: 50px;
   font-weight: bold;
   letter-spacing: 4px;
 }
@@ -779,7 +864,7 @@ li {
 .page-3 .share-text span {
   background-color: #8f1a1c;
   border-radius: 8px;
-  padding: 4px 5px;
+  padding: 2px 5px;
   margin: 0 5px;
   color: #deab8e;
 }
@@ -799,6 +884,15 @@ li {
   font-weight: bold;
   right: 126px;
   line-height: 40px;
+}
+
+.page-3 .people-image {
+  position: absolute;
+  top: 19%;
+  left: 17px;
+  right: 0;
+  margin: auto;
+  width: 196px;
 }
 /* 页面切换动画 */
 .o-page-scaleDownCenter {
