@@ -113,9 +113,7 @@
 .button {
   display: none;
 }
-.ok .button {
-  display: block;
-}
+
 .all-number {
   position: absolute;
   top: 297px;
