@@ -22,14 +22,6 @@ body, html, .owo, .page-box {
   z-index: 99;
 }
 
-
-a {
-  color: #333;
-}
-
-a:link, a:visited {
-  text-decoration: none;
-}
 img {
   border: none;
 }
@@ -52,17 +44,6 @@ ul {
 
 li {
   list-style: none;
-}
-
-[view] {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-[route] {
-  display: none;
 }
 
 .owo-animation-floatLeftRight {
@@ -120,6 +101,12 @@ li {
   top: 31px;
 }
 
+.loading-box .gif {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .loading-box .so-9 {
   position: absolute;
   left: 635px;
@@ -164,7 +151,7 @@ li {
   100%{-webkit-transform:scale(1);transform:scale(1);}
 }
 
-.page-1 {
+.page-1, .page-2 {
   background-image: url('../resource/one-1.png');
 }
 
@@ -514,7 +501,7 @@ li {
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
-  60% {
+  77% {
     opacity: 0;
     -webkit-transform: scale3d(2.3, 2.3, 2.3);
             transform: scale3d(2.3, 2.3, 2.3);
@@ -540,7 +527,7 @@ li {
             transform: scale3d(2.3, 2.3, 2.3);
   }
 
-  60% {
+  77% {
     opacity: 0;
     -webkit-transform: scale3d(2.3, 2.3, 2.3);
             transform: scale3d(2.3, 2.3, 2.3);
@@ -826,6 +813,7 @@ li {
   position: absolute;
   bottom: 150px;
   left: 120px;
+  z-index: 999;
 }
 
 .page-3 .save {
@@ -859,14 +847,17 @@ li {
   line-height: 50px;
   font-weight: bold;
   letter-spacing: 4px;
+  word-break:break-all;
 }
 
-.page-3 .share-text span {
+.page-3 .share-text font {
   background-color: #8f1a1c;
   border-radius: 8px;
   padding: 2px 5px;
   margin: 0 5px;
   color: #deab8e;
+  display: inline;
+  word-break: break-all;
 }
 
 .page-3 .button {
@@ -940,5 +931,112 @@ li {
 
 .zoomIn {
   animation-name: zoomIn;
+}
+
+/* 这个文件里写的是全局样式,在各个页面都生效 */
+body, html, .owo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: text;
+  font: normal 12px/180% "SimSun";
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+html {
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+h1, h2, h3, h4, h5, input {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style-type: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td{
+  margin: 0;
+  padding: 0;
+}
+
+.clear:after {
+  content: "";
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.soulless {
+  pointer-events: none;
+  user-select: none;
+}
+.button {
+  pointer-events: all;
+}
+
+.o-page-test {
+	animation: test 2s ease-out both;
+}
+
+/* 动画效果 */
+@keyframes test {
+  from {
+    opacity: 0;
+    transform: scale3d(2.3, 2.3, 2.3);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.o-page-testleft {
+	animation: testleft 2s ease-out both;
+}
+
+@keyframes testleft {
+  from {
+    opacity: 0;
+    left: 3px;
+    transform: scale3d(2.3, 2.3, 2.3) translate(-50px, 0);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.ok .button {
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  top: 1265px;
+  left: 575px;
+}
+.ani {
+  pointer-events: none;
+}
+.so-5 {
+  pointer-events: auto;
 }
 

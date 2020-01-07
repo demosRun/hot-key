@@ -191,6 +191,7 @@
       
     },
     show: function () {
+      console.log('ssssssssss')
       this.changeImage(this.data.nowIndex)
       this.addAni()
       setTimeout(() => {
